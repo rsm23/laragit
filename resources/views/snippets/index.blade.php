@@ -10,8 +10,8 @@
                                 <strong><a href="{{ url('snippets/'.$snippet->slug) }}">{{ $snippet->title }}</a></strong> <small>{{ '@'.$snippet->owner->slug.' - ' }}</small> <small>{{ $snippet->created_at->diffForHumans() }}</small>
                                 <br>
                             <pre>
-                            <code>{{ $snippet->body }}</code>
-                        </pre>
+                                <code>{{ $snippet->body }}</code>
+                            </pre>
                             </p>
                         </div>
                         <nav class="level">
@@ -37,8 +37,7 @@
         <div class="tile is-parent">
             <aside class="tile is-child notification is-success" id="sidebar">
                 <div class="content">
-                    <p class="title">Tall tile</p>
-                    <p class="subtitle">With even more content</p>
+                    <p class="title">Most Liked</p>
                     <div class="content">
                         @forelse($snippetsOrder as $snippets)
                             @foreach($snippets as $snippet)

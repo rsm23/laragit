@@ -130,6 +130,8 @@
         $('html').removeClass('is-clipped');
         $(this).parent().removeClass('is-active');
     });
+
+    hljs.initHighlightingOnLoad();
 </script>
 
 @if (isset($footer))
