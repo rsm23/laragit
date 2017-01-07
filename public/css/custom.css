@@ -1,0 +1,41 @@
+pre {
+  background: none;
+}
+
+article.snippet {
+  margin-bottom: 2em;
+  border-bottom: 1px dashed #e3e3e3;
+}
+
+.flex {
+  -webkit-box-flex: 1;
+  flex: 1;
+}
+
+.button .icon:last-child,
+.button .tag:last-child,
+.button .icon {
+  margin: 0;
+}
+
+.box {
+  overflow: auto;
+}
+
+#snippet-title {
+  max-width: 185px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+#content .media-content strong {
+  max-width: 650px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=custom.css.map */
