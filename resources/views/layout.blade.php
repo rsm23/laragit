@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta charset="UTF-8">
-    <title>Snippets</title>
+    <title>LaraGit</title>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/custom.css">
 
@@ -16,19 +16,19 @@
 <nav class="nav">
     <div class="nav-left">
         <h1 class="title is-1">
-            <a class="nav-item is-brand" href="{{ url('/') }}">
-                GitBits
+            <a class="is-brand" href="{{ url('/') }}">
+                LaraGit
             </a>
         </h1>
     </div>
 
     <div class="nav-center">
-        <a class="nav-item" href="#">
+        <a class="nav-item" href="https://github.com/rsm23/laragit">
             <span class="icon">
             <i class="fa fa-github"></i>
             </span>
         </a>
-        <a class="nav-item" href="#">
+        <a class="nav-item" href="https://www.twitter.com/urtechshield">
             <span class="icon">
             <i class="fa fa-twitter"></i>
             </span>
@@ -82,15 +82,15 @@
     <div class="hero-body">
         <div class="container">
             <h1 class="title">
-                <a href="/">Snippets</a>
+                <a href="/">LaraGit</a>
             </h1>
 
             <h2 class="subtitle">
-                A tutorial from the friendly folk at Laracasts.com.
+                Laragit is a takeoff of Laracasts's Create a Snippets Application screencasts, with many improvements and additional features bult with Laravel and VueJS
             </h2>
 
             <p>
-                <a href="/snippets/create" class="button">Create Snippet</a>
+                <a href="/snippets/create" class="button is-primary is-large">Create Snippet</a>
             </p>
         </div>
     </div>
@@ -130,8 +130,6 @@
         $('html').removeClass('is-clipped');
         $(this).parent().removeClass('is-active');
     });
-
-    hljs.initHighlightingOnLoad();
 </script>
 
 @if (isset($footer))

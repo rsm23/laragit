@@ -1,5 +1,6 @@
 pre {
-  background: none;
+  background: #e3e3e3;
+  border-radius: 3px;
 }
 
 article.snippet {
