@@ -114,8 +114,11 @@
 @endif
 </div>
 <script src="/js/app.js"></script>
+<script src="/js/libs.js"></script>
+
 <script>
-    $('#register').click(function(e) {
+    hljs.initHighlightingOnLoad();
+$('#register').click(function(e) {
         e.preventDefault();
         var target = $(this).data('target');
         var route = $(this).data('route');

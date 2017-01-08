@@ -18,4 +18,6 @@ elixir((mix) => {
     mix.sass('custom.scss')
        .webpack('app.js');
     mix.copy('node_modules/font-awesome/fonts', 'public/fonts');
+
+    mix.scriptsIn('public/js/libs', 'public/js/libs.js');
 });
