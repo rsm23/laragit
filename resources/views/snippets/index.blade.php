@@ -7,7 +7,9 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong><a href="{{ url('snippets/'.$snippet->slug) }}">{{ $snippet->title }}</a></strong> <small>{{ '@'.$snippet->owner->slug.' - ' }}</small> <small>{{ $snippet->created_at->diffForHumans() }}</small>
+                                <strong><a href="{{ url('snippets/'.$snippet->slug) }}">{{ $snippet->title }}</a></strong>
+                                <br>
+                                <small>{{ 'By : @'.$snippet->owner->slug.' - ' }}</small> <small>{{ $snippet->created_at->diffForHumans() }}</small>
                                 <br>
                             <pre>
                                 <code>{{ $snippet->body }}</code>
