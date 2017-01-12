@@ -8,17 +8,31 @@
         @if ($snippet->id)
             <input type="hidden" name="forked_slug" value="{{ $snippet->slug }}">
         @endif
-        
+
         <div class="control">
             <label for="title" class="label">Title:</label>
-            
-            <input type="text" id="title" name="title" class="input" value="{{ $snippet->title }} {{ old('title') }}">
+
+            <input type="text" id="title" name="title" class="input" value="{{ old('title') }} {{ $snippet->title }}">
+        </div>
+
+        <div class="control">
+            <label for="channel" class="label">Channel:</label>
+            <select name="channel" id="channel" class="input">
+                <option value="0">Select a channel</option>
+                @foreach($channels as $channel)
+                    @if (old('title') == $channel)
+                        <option value="{{ $channel->id }}" selected>{{ $channel->name }}</option>
+                    @else
+                        <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                    @endif
+                @endforeach
+            </select>
         </div>
 
         <div class="control">
             <label for="body" class="label">Body:</label>
             
-            <textarea id="body" name="body" class="textarea">{{ $snippet->body }} {{ old('body') }}</textarea>
+            <textarea id="body" name="body" class="textarea autoExpand">{{ $snippet->body }} {{ old('body') }}</textarea>
         </div>
         <div class="g-recaptcha"
              data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">

@@ -46,8 +46,23 @@ class Snippet extends Model
         return $this->forked_slug;
     }
 
+    /**
+     * A Snippet may have multiple likes
+     *
+     * @return mixed
+     */
     public function likes()
     {
         return $this->belongsToMany('App\User', 'snippet_likes')->withTrashed();
+    }
+
+    /**
+     * A Snippet belongs to one channel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Channel;
 use App\Traits\CaptchaTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Snippet;
@@ -51,7 +52,8 @@ class SnippetsController extends Controller
      */
     public function create(Snippet $snippet)
     {
-        return view('snippets.create', compact('snippet'));
+        $channels = Channel::all();
+        return view('snippets.create', ['snippet' => $snippet, 'channels' => $channels]);
     }
 
     /**
@@ -68,7 +70,7 @@ class SnippetsController extends Controller
     /**
      * Store a new snippet in the database.
      * @param Request $request
-     * @return \RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -76,18 +78,28 @@ class SnippetsController extends Controller
         $this->validate(request(), [
             'title' => 'required',
             'body' => 'required',
+            'channel' => 'required',
             'g-recaptcha-response'  => 'required'
         ]);
 
         $userId = Auth::check() ? Auth::id() : null;
 
-        $slug = Snippet::where('slug', str_slug(request('title')))->exists() ? str_slug(request('title') . str_random(4)) : str_slug(request('title'));
+        $title = request('title');
+        $slug_exists = Snippet::where('slug', str_slug($title))->exists();
+        $slug = $slug_exists ? str_slug($title . str_random(4)) : str_slug($title);
+
+        $channel = Channel::find(request('channel'));
+        if ($channel == null)
+        {
+            return redirect()->back()->withErrors(array('Channel' => 'Choose a proper Chanel'))->withInput($request->all());
+        }
 
         Snippet::create([
             'user_id' => $userId,
-            'title' => request('title'),
+            'title' => $title,
             'slug' => $slug,
             'body' => request('body'),
+            'channel_id' => request('channel'),
             'forked_slug' => request('forked_slug')
         ]);
 
