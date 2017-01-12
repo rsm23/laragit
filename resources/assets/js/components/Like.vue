@@ -45,22 +45,23 @@
 <script>
     export default {
         mounted() {
-            Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
-            this.$http.get('/like/' + this.snippet_id)
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            axios.get('/like/' + this.snippet_id)
                 .then( (resp) => {
-                    this.status = resp.body.status
-                    this.loading = false
-                })
-            this.$http.get('/like/' + this.snippet_id + '/count')
-                .then( (resp) => {
-                    this.likes = resp.body.likes
-                })
+                    this.status = resp.data.status;
+                    this.loading = false;
+
+                    axios.get('/like/' + this.snippet_id + '/count')
+                        .then( (resp) => {
+                            this.likes = resp.data.likes
+                        });
+                });
         },
         props:['snippet_id'],
         data() {
             return {
-                status: '',
                 likes : '',
+                status: '',
                 loading: true
             }
         },
@@ -68,15 +69,16 @@
             toggleLike()
             {
                 this.loading = true;
-                this.$http.post('/like/' + this.snippet_id)
+                axios.post('/like/' + this.snippet_id)
                     .then( (resp) => {
-                        this.status = resp.body.status
-                        this.loading = false
-                    })
-                this.$http.get('/like/' + this.snippet_id + '/count')
-                    .then( (resp) => {
-                        this.likes = resp.body.likes
-                    })
+                        this.status = resp.data.status;
+                        this.loading = false;
+
+                        axios.get('/like/' + this.snippet_id + '/count')
+                            .then( (resp) => {
+                                this.likes = resp.data.likes
+                            });
+                    });
             }
         }
     }

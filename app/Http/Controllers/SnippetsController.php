@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Traits\CaptchaTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Snippet;
 use App\SnippetLike;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SnippetsController extends Controller
 {
+    use CaptchaTrait;
 
     /**
      * List all of the snippets.
@@ -64,14 +67,16 @@ class SnippetsController extends Controller
 
     /**
      * Store a new snippet in the database.
-     * 
+     * @param Request $request
      * @return \RedirectResponse
      */
-    public function store()
+    public function store(Request $request)
     {
+        $request['recqptcha'] = $this->captchaCheck();
         $this->validate(request(), [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'g-recaptcha-response'  => 'required'
         ]);
 
         $userId = Auth::check() ? Auth::id() : null;
