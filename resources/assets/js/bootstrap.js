@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -6,8 +5,6 @@ window._ = require('lodash');
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
-
-window.$ = window.jQuery = require('jquery');
 
 require('bootstrap-sass');
 
@@ -18,7 +15,6 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
-require('vue-resource');
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

@@ -14,10 +14,11 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.sass('app.scss');
+    mix.sass(['../../../node_modules/codemirror/lib/codemirror.css','../../../node_modules/codemirror/theme/material.css','app.scss']);
     mix.sass('custom.scss')
        .webpack('app.js');
     mix.copy('node_modules/font-awesome/fonts', 'public/fonts');
-
-    mix.scriptsIn('public/js/libs', 'public/js/libs.js');
+    mix.copy('node_modules/codemirror/', 'public/codemirror/');
+    mix.scripts(['../../../node_modules/codemirror/lib/codemirror.js', '../../../node_modules/codemirror/addon/mode/loadmode.js'], 'public/js/libs.js');
+    mix.scripts('libS/highlight.js', 'public/js/hljs.js');
 });
