@@ -1,3 +1,4 @@
+window.jQuery = window.$ =  require('jquery/dist/jquery.min');
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -6,7 +7,9 @@
  */
 
 require('./bootstrap');
-import * as Vue from "vue";
+
+import * as Vue from 'vue';
+import CodeMirror from 'codemirror';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

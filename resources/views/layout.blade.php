@@ -115,25 +115,27 @@
 </div>
 <script src="/js/app.js"></script>
 <script src="/js/libs.js"></script>
+<script src="/js/hljs.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+@if(Auth::guest())
+    <script>
+        $('#register').click(function(e) {
+            e.preventDefault();
+            var target = $(this).data('target');
+            var route = $(this).data('route');
 
-<script>
-    hljs.initHighlightingOnLoad();
-$('#register').click(function(e) {
-        e.preventDefault();
-        var target = $(this).data('target');
-        var route = $(this).data('route');
-
-        if (route != 'register')
-        {
-            $('html').addClass('is-clipped');
-        }
-        $(target).addClass('is-active');
-    });
-    $('.modal-background, .modal-close').click(function() {
-        $('html').removeClass('is-clipped');
-        $(this).parent().removeClass('is-active');
-    });
-</script>
+            if (route != 'register')
+            {
+                $('html').addClass('is-clipped');
+            }
+            $(target).addClass('is-active');
+        });
+        $('.modal-background, .modal-close').click(function() {
+            $('html').removeClass('is-clipped');
+            $(this).parent().removeClass('is-active');
+        });
+    </script>
+@endif
 
 @if (isset($footer))
     {{ $footer }}
