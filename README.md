@@ -1,4 +1,6 @@
-# LaraGit
+LaraGit
+===============
+
 **Laragit** is a snippets web app built with Laravel and VueJS as a takeoff of a [screencast on Laracasts.com](https://laracasts.com/series/how-do-i/episodes/13)
 **LaraGit** has many features like : 
 * A user's system
