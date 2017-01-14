@@ -9,8 +9,8 @@
 # Installation
 ## Downloading the files
 You can clone this repo using git with:
-`git clone https://github.com/rsm23/laragit.git`
 
+`git clone https://github.com/rsm23/laragit.git`
 
 Or you can download the zip file.
 
@@ -25,15 +25,30 @@ php artisan key:generate`
 `npm install` or simply `yarn` if you have yarn on your machine
 
 ###Database
-First setup your database connections on the **.env** file:
+First setup your database connections on the _**.env**_ file:
 
-![Setting up the DB setings on the env file](http://i.imgur.com/A6f4xZf.png)
-
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laragit
+    DB_USERNAME=root
+    DB_PASSWORD=
+    
 Then run
+
 `php artisan migrate`
+
 
 Now enjoy using **LaraGit**
 
 ##Thanks for using my script
 Please don't miss to share, pull if you have any optimizations, and submit issues
 
+## Security
+
+If you discover a security vulnerability within this package, please send an e-mail to Rahmani Saif at saiflacrimosa@gmail.com. All security vulnerabilities will be promptly addressed.
+
+
+## License
+
+LaraGit is licensed under [The MIT License (MIT)](LICENSE).
