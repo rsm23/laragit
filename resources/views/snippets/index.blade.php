@@ -18,6 +18,11 @@
                         </div>
                         <nav class="level">
                             <div class="level-left">
+                                @if(Auth::id() === $snippet->owner->id)
+                                    <a class="level-item button is-warning" href="/snippets/{{ $snippet->slug }}/edit">
+                                        <span class="icon is-small"><i class="fa fa-pencil"></i></span>
+                                    </a>
+                                @endif
                                 <a class="level-item button is-primary">
                                     <span class="icon is-small"><i class="fa fa-share-alt"></i></span>
                                 </a>

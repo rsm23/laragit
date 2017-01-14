@@ -78,7 +78,7 @@ class SnippetsController extends Controller
         $this->validate(request(), [
             'title' => 'required',
             'body' => 'required',
-            'channel' => 'required',
+            'channel' => 'required|exists:channels,id',
             'g-recaptcha-response'  => 'required'
         ]);
 
@@ -87,13 +87,6 @@ class SnippetsController extends Controller
         $title = request('title');
         $slug_exists = Snippet::where('slug', str_slug($title))->exists();
         $slug = $slug_exists ? str_slug($title . str_random(4)) : str_slug($title);
-
-        $channel = Channel::find(request('channel'));
-        if ($channel == null)
-        {
-            return redirect()->back()->withErrors(array('Channel' => 'Choose a proper Chanel'))->withInput($request->all());
-        }
-
         Snippet::create([
             'user_id' => $userId,
             'title' => $title,
@@ -105,6 +98,41 @@ class SnippetsController extends Controller
 
         return redirect()->home();
     }
+
+    /**
+     * Edit a single Snippet
+     *
+     * @param Snippet $snippet
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(Snippet $snippet)
+    {
+        $channels = Channel::all();
+        return view('snippets.edit', ['snippet' => $snippet, 'channels' => $channels]);
+    }
+
+    public function update(Request $request, $slug)
+    {
+        $snippet = Snippet::findOrFail($slug);
+
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+            'channel' => 'required|exists:channels,id',
+            'g-recaptcha-response'  => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $snippet->fill([
+            'title' => $request->title,
+            'body' => $request->body,
+            'channel_id' => $request->channel
+        ])->save();
+
+        return redirect()->back();
+    }
+
 
     /**
      * Check if the current user has already liked the snippet

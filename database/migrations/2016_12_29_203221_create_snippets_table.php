@@ -14,9 +14,10 @@ class CreateSnippetsTable extends Migration
     public function up()
     {
         Schema::create('snippets', function (Blueprint $table) {
+
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('channel_id')->unsigned();
+            $table->integer('channel_id')->unsigned()->nullable();;
             $table->string('forked_slug')->nullable();
             $table->string('title');
             $table->string('slug')->unique();
