@@ -59,10 +59,10 @@ class Snippet extends Model
     /**
      * A Snippet belongs to one channel
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function channel()
     {
-        return $this->belongsTo(Channel::class);
+        return $this->hasOne(Channel::class, 'channel_id');
     }
 }

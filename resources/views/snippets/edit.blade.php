@@ -1,26 +1,22 @@
 @component('layout')
-    <h1 class="title">New Snippet</h1>
+    <h1 class="title">Edit : {{ $snippet->title }}</h1>
 
     @include('partials.errors')
-    <form action="/snippets" method="POST">
+    <form action="/snippets/{{ $snippet->slug }}" method="POST">
         {{ csrf_field() }}
-
-        @if ($snippet->id)
-            <input type="hidden" name="forked_slug" value="{{ $snippet->slug }}">
-        @endif
+        {{ method_field('patch') }}
 
         <div class="control">
             <label for="title" class="label">Title:</label>
-
             <input type="text" id="title" name="title" class="input" value="{{ old('title') }} {{ $snippet->title }}">
         </div>
 
         <div class="control">
             <label for="channel" class="label">Channel:</label>
             <select name="channel" id="channel" class="input" onchange="change()">
-                <option selected disabled>Pick a channel...</option>
+                <option disabled>Select a channel</option>
                 @foreach($channels as $channel)
-                    @if (old('title') == $channel)
+                    @if ($snippet->channel_id == $channel->id)
                         <option value="{{ $channel->id }}" selected>{{ $channel->name }}</option>
                     @else
                         <option value="{{ $channel->id }}">{{ $channel->name }}</option>
@@ -38,7 +34,7 @@
              data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
         </div>
         <div class="control">
-            <button class="button is-primary">Publish Snippet</button>
+            <button class="button is-primary">Edit Snippet</button>
         </div>
     </form>
 
@@ -51,6 +47,7 @@
                 matchBrackets: true,
                 lineNumbers: true,
                 lineWrapping: true,
+                mode : $("#channel").find("option:selected").text().toLowerCase(),
                 theme: "material"
             });
             function updateTextArea() {
@@ -86,6 +83,7 @@
                 e.preventDefault();
                 $('div.notification').slideUp(300);
             });
+            window.onload = change();
             document.querySelector('#body').addEventListener('keydown', function(e) {
                 if (e.keyCode === 9) { // tab was pressed
                     // get caret position/selection

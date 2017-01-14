@@ -1,13 +1,11 @@
 <template>
-    <div style="height:32px">
+    <div>
         <a class="button is-loading is-primary" v-if="loading">
             <span class="icon is-small">
                     <i class="fa fa-heart"></i>
                 </span>
         </a>
-        <p class="level-item has-addons" v-if="status == 'Anonymous' && loading!=true">
-            <a  href="/login"
-                    class="button is-success">
+            <a class="level-item button is-success" href="/login" v-if="status == 'Anonymous' && loading!=true">
                     <span class="icon is-small">
                         <i class="fa fa-heart"></i>
                     </span>
@@ -15,9 +13,7 @@
                         {{ likes }}
                     </span>
             </a>
-        </p>
-        <p class="control has-addons" v-if="status == 'notLiked' && loading!=true">
-            <a      @click="toggleLike"
+            <a      @click="toggleLike" v-if="status == 'notLiked' && loading!=true"
                     class="level-item button is-success">
                     <span class="icon is-small">
                         <i class="fa fa-heart"></i>
@@ -26,9 +22,7 @@
                         {{ likes }}
                     </span>
             </a>
-        </p>
-        <p class="control has-addons" v-if="status == 'Liked' && loading!=true">
-            <a      @click="toggleLike"
+            <a      @click="toggleLike" v-if="status == 'Liked' && loading!=true"
                 class="level-item button is-danger">
                 <span class="icon is-small">
                     <i class="fa fa-heart"></i>
@@ -37,8 +31,6 @@
                     {{ likes }}
                 </span>
             </a>
-        </p>
-        </p>
     </div>
 </template>
 
