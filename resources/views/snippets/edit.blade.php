@@ -14,7 +14,7 @@
         <div class="control">
             <label for="channel" class="label">Channel:</label>
             <select name="channel" id="channel" class="input" onchange="change()">
-                <option disabled>Select a channel</option>
+                <option disabled>Pich a Channel...</option>
                 @foreach($channels as $channel)
                     @if ($snippet->channel_id == $channel->id)
                         <option value="{{ $channel->id }}" selected>{{ $channel->name }}</option>

@@ -41,7 +41,7 @@
         {{ $snippets->links() }}
     </div>
     <div class="column is-one-quarter-desktop is-full-tablet">
-        <div class="tile is-parent">
+        <div class="tile is-parent" id="most-liked">
             <aside class="tile is-child notification is-success" id="sidebar">
                 <div class="content">
                     <p class="title">Most Liked</p>
