@@ -38,4 +38,8 @@ article.snippet {
   display: inline-block;
 }
 
+#most-liked {
+  padding: 0;
+}
+
 /*# sourceMappingURL=custom.css.map */

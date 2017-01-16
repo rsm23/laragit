@@ -14,10 +14,15 @@
                     </div>
                     <nav class="level">
                         <div class="level-left">
+                            @if(Auth::id() === $snippet->owner->id)
+                                <a class="level-item button is-warning" href="/snippets/{{ $snippet->slug }}/edit">
+                                    <span class="icon is-small"><i class="fa fa-pencil"></i></span>
+                                </a>
+                            @endif
                             <a class="level-item button is-primary">
                                 <span class="icon is-small"><i class="fa fa-share-alt"></i></span>
                             </a>
-                            <a class="level-item button is-primary" href="/snippets/{{ $snippet->slug }}/fork">
+                            <a class="level-item button is-info" href="/snippets/{{ $snippet->slug }}/fork">
                                 <span class="icon is-small"><i class="fa fa-code-fork"></i></span>
                             </a>
                             <like :snippet_id="{{ $snippet->id }}"></like>
