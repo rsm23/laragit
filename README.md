@@ -1,5 +1,10 @@
 LaraGit
 ===============
+<p align="center">
+<a href="https://github.com/rsm23/laragit/issues"><img src="https://img.shields.io/github/issues/rsm23/laragit.svg"></a>
+<a href="https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5Dw"><img src="https://img.shields.io/twitter/url/https/github.com/rsm23/laragit.svg?style=social&style=flat-square"></a>
+<a href="https://raw.githubusercontent.com/rsm23/laragit/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+</p>
 
 **Laragit** is a snippets web app built with Laravel and VueJS as a takeoff of a [screencast on Laracasts.com](https://laracasts.com/series/how-do-i/episodes/13)
 **LaraGit** has many features like : 
