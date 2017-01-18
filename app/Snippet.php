@@ -6,9 +6,10 @@ class Snippet extends Model
 {
     protected $primaryKey = 'slug';
     protected $keyType = 'string';
+
     /**
      * A snippet belongs to a user whether he is an
-     * actual user or an anonymous user
+     * actual user or an anonymous user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
@@ -16,6 +17,7 @@ class Snippet extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     /**
      * A snippet may have multiple forks.
      *
@@ -23,7 +25,7 @@ class Snippet extends Model
      */
     public function forks()
     {
-        return $this->hasMany(Snippet::class, 'forked_slug');
+        return $this->hasMany(self::class, 'forked_slug');
     }
 
     /**
@@ -33,13 +35,13 @@ class Snippet extends Model
      */
     public function originalSnippet()
     {
-        return $this->belongsTo(Snippet::class, 'forked_slug');
+        return $this->belongsTo(self::class, 'forked_slug');
     }
 
     /**
      * Determine if the current snippet is a fork.
      *
-     * @return boolean
+     * @return bool
      */
     public function isAFork()
     {
@@ -47,7 +49,7 @@ class Snippet extends Model
     }
 
     /**
-     * A Snippet may have multiple likes
+     * A Snippet may have multiple likes.
      *
      * @return mixed
      */
@@ -57,7 +59,7 @@ class Snippet extends Model
     }
 
     /**
-     * A Snippet belongs to one channel
+     * A Snippet belongs to one channel.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

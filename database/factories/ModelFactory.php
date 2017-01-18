@@ -16,11 +16,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
     $name = $faker->name;
     $slug = str_slug($name);
+
     return [
-        'name' => $name,
-        'slug' => $slug,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'name'           => $name,
+        'slug'           => $slug,
+        'email'          => $faker->unique()->safeEmail,
+        'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
@@ -28,10 +29,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Snippet::class, function (Faker\Generator $faker) {
     $name = $faker->text;
     $slug = str_slug($name);
+
     return [
-        'title' => $name,
+        'title'   => $name,
         'user_id' => 1,
-        'slug' => $slug,
-        'body' => $faker->paragraph,
+        'slug'    => $slug,
+        'body'    => $faker->paragraph,
     ];
 });
