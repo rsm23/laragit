@@ -1,6 +1,5 @@
 <?php
 
-use App\Channel;
 
 Route::get('/', 'SnippetsController@index')->name('home');
 Route::get('/snippets/create', 'SnippetsController@create')->middleware('auth');

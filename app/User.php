@@ -2,13 +2,12 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'slug'
+        'name', 'email', 'password', 'slug',
     ];
 
     /**
@@ -29,8 +28,8 @@ class User extends Authenticatable
     ];
 
     /**
-     * Getting the User's snippets
-     * 
+     * Getting the User's snippets.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function snippets()
@@ -42,5 +41,4 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('Snippet', 'snippet_likes', 'user_id', 'snippet_id')->withTrashed();
     }
-    
 }

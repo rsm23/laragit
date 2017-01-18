@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateSnippetsTable extends Migration
 {
@@ -14,10 +14,9 @@ class CreateSnippetsTable extends Migration
     public function up()
     {
         Schema::create('snippets', function (Blueprint $table) {
-
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('channel_id')->unsigned()->nullable();;
+            $table->integer('channel_id')->unsigned()->nullable();
             $table->string('forked_slug')->nullable();
             $table->string('title');
             $table->string('slug')->unique();
