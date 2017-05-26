@@ -6,7 +6,7 @@ LaraGit
 <a href="https://raw.githubusercontent.com/rsm23/laragit/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 </p>
 
-**Laragit** is a snippets web app built with Laravel and VueJS as a takeoff of a [screencast on Laracasts.com](https://laracasts.com/series/how-do-i/episodes/13)
+**Laragit** is a snippets web app built with Laravel and VueJS
 **LaraGit** has many features like : 
 * A user's system
 * A Like system.
