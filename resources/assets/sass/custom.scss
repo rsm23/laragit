@@ -13,29 +13,30 @@ article.snippet {
 
 .button .icon:last-child,
 .button .tag:last-child,
-.button .icon{
+.button .icon {
   margin: 0;
 }
 
-.box{
+.box {
   overflow: auto;
 }
 
-#snippet-title{
-  max-width:185px;
+#snippet-title {
+  max-width: 185px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   display: inline-block;
 }
 
-#content .media-content strong{
-  max-width:650px;
+#content .media-content strong {
+  max-width: 650px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   display: inline-block;
 }
-#most-liked{
-  padding : 0;
+
+#most-liked {
+  padding: 0;
 }

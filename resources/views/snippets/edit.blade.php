@@ -1,4 +1,7 @@
 @component('layout')
+    @slot('title)
+        Edit : {{ $snippet->title }}
+    @endslot
     <h1 class="title">Edit : {{ $snippet->title }}</h1>
 
     @include('partials.errors')
@@ -8,7 +11,7 @@
 
         <div class="control">
             <label for="title" class="label">Title:</label>
-            <input type="text" id="title" name="title" class="input" value="{{ old('title') }} {{ $snippet->title }}">
+            <input id="title" name="title" class="input" value="{{ old('title') }} {{ $snippet->title }}">
         </div>
 
         <div class="control">
@@ -27,11 +30,13 @@
 
         <div class="control">
             <label for="body" class="label">Body:</label>
-            
+
             <textarea id="body" name="body" class="textarea">{{ $snippet->body }} {{ old('body') }}</textarea>
         </div>
-        <div class="g-recaptcha"
-             data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+        <div class="control">
+            <div class="g-recaptcha"
+                 data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+            </div>
         </div>
         <div class="control">
             <button class="button is-primary">Edit Snippet</button>
@@ -40,20 +45,23 @@
 
     {{-- Just a quick script to allow for pressing the "tab" key in textareas. --}}
     @slot ('footer')
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <script>
             CodeMirror.modeURL = "/codemirror/mode/%N/%N.js";
             let editor = CodeMirror.fromTextArea(document.getElementById("body"), {
                 matchBrackets: true,
                 lineNumbers: true,
                 lineWrapping: true,
-                mode : $("#channel").find("option:selected").text().toLowerCase(),
+                mode: $("#channel").find("option:selected").text().toLowerCase(),
                 theme: "material"
             });
+
             function updateTextArea() {
                 editor.save();
             }
+
             editor.on('change', updateTextArea);
+
             function change() {
                 var modeInput = $("#channel").find("option:selected").text().toLowerCase();
                 var val = modeInput, m, mode, spec;
@@ -79,12 +87,13 @@
                     alert("Could not find a mode corresponding to " + val);
                 }
             }
-            $('.delete').click(function(e){
+
+            $('.delete').click(function (e) {
                 e.preventDefault();
                 $('div.notification').slideUp(300);
             });
             window.onload = change();
-            document.querySelector('#body').addEventListener('keydown', function(e) {
+            document.querySelector('#body').addEventListener('keydown', function (e) {
                 if (e.keyCode === 9) { // tab was pressed
                     // get caret position/selection
                     let val = this.value,
@@ -101,5 +110,5 @@
                 }
             });
         </script>
-    @endslot    
+    @endslot
 @endcomponent

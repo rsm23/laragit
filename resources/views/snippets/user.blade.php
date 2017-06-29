@@ -5,7 +5,9 @@
                 <div class="media-content">
                     <div class="content">
                         <p>
-                            <strong>{{ $snippet->title }}</strong> <small>{{ '@'.Auth::user()->slug.' - ' }}</small> <small>{{ $snippet->created_at->diffForHumans() }}</small>
+                            <strong>{{ $snippet->title }}</strong>
+                            <small>{{ '@'.Auth::user()->slug.' - ' }}</small>
+                            <small>{{ $snippet->created_at->diffForHumans() }}</small>
                             <br>
                         <pre>
                         <code>{{ $snippet->body }}</code>

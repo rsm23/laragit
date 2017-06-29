@@ -1,4 +1,4 @@
-window.jQuery = window.$ =  require('jquery/dist/jquery.min');
+window.jQuery = window.$ = require('jquery/dist/jquery.min');
 
 /**
  * First we will load all of this project's JavaScript dependencies which
