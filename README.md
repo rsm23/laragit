@@ -24,14 +24,14 @@ Or you can download the zip file.
 ## Installing packages and dependencies
 To install **LaraGit** run these commands :
 
-###PHP Dependencies
+## PHP Dependencies
 `composer install
 php artisan key:generate`
 
-###Node Modules
+## Node Modules
 `npm install` or simply `yarn` if you have yarn on your machine
 
-###Database
+## Database
 First setup your database connections on the _**.env**_ file:
 
     DB_CONNECTION=mysql
@@ -41,7 +41,7 @@ First setup your database connections on the _**.env**_ file:
     DB_USERNAME=root
     DB_PASSWORD=
     
-Then run
+**Then run**
 
 `php artisan migrate`
 
