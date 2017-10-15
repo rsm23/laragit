@@ -8,7 +8,6 @@ use App\SnippetLike;
 use App\Traits\CaptchaTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class SnippetsController extends Controller {
 	use CaptchaTrait;
@@ -20,12 +19,12 @@ class SnippetsController extends Controller {
 	 */
 	public function index() {
 		$snippets = Snippet::latest()->with( 'owner' )->paginate( 10 );
-		$likes    = SnippetLike::select( 'snippet_id' )->orderBy( DB::raw( 'count(snippet_id)' ), 'DESC' )->groupBy( 'snippet_id' )->limit( 6 )->get();
+		$likes    = SnippetLike::mostLiked()->limit( 6 )->get();
 
 		$ids           = $likes->pluck( 'snippet_id' )->toArray();
 		$snippetsOrder = collect();
 		foreach ( $ids as $id ) {
-			$snippetsOrder->push( Snippet::where( 'id', $id )->get() );
+			$snippetsOrder->push( collect($snippets->where( 'id', $id)) );
 		}
 
 		return view( 'snippets.index', compact( 'snippets', 'snippetsOrder' ) );
@@ -122,8 +121,6 @@ class SnippetsController extends Controller {
 			'g-recaptcha-response' => 'required',
 		] );
 
-		$input = $request->all();
-
 		$snippet->fill( [
 			'title'      => $request->title,
 			'body'       => $request->body,
@@ -176,11 +173,11 @@ class SnippetsController extends Controller {
 	public function like( $snippet ) {
 		$existing_like = SnippetLike::whereSnippetId( $snippet )->whereUserId( Auth::id() )->first();
 
-		if ( Auth::check() ) {
-			$id = Auth::id();
-		} else {
-			return [ 'status' => 'Anonymous' ];
+		if ( !Auth::check() ) {
+            return [ 'status' => 'Anonymous' ];
 		}
+        $id = Auth::id();
+
 		if ( is_null( $existing_like ) ) {
 			SnippetLike::create( [
 				'snippet_id' => $snippet,
@@ -188,16 +185,14 @@ class SnippetsController extends Controller {
 			] );
 
 			return [ 'status' => 'Liked' ];
-		} else {
-			if ( is_null( $existing_like->deleted_at ) ) {
-				$existing_like->delete();
+		} elseif ( is_null( $existing_like->deleted_at ) ) {
+            $existing_like->delete();
 
-				return [ 'status' => 'notLiked' ];
-			} else {
-				$existing_like->restore();
+            return [ 'status' => 'notLiked' ];
+        } else {
+            $existing_like->restore();
 
-				return [ 'status' => 'Liked' ];
-			}
-		}
+            return [ 'status' => 'Liked' ];
+        }
 	}
 }
