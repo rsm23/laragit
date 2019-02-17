@@ -61,7 +61,7 @@ Please don't miss to share, pull if you have any optimizations, and submit issue
 
 ### Security
 
-If you discover a security vulnerability within this package, please send an e-mail to Rahmani Saif at saif@rahmani.site. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this package, please send an e-mail to Rahmani Saif at rahmani@seifelmoulouk.com . All security vulnerabilities will be promptly addressed.
 
 
 ### License
