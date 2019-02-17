@@ -33,7 +33,7 @@ To install **LaraGit** run these commands :
 
 ### PHP Dependencies
 > `composer install
-php artisan key:generate`
+ && php artisan key:generate`
 
 ### Node Modules
 > `npm install` or simply `yarn` if you have yarn on your machine
